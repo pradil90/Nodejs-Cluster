@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+      <head>
+
+            <meta charset="UTF-8">
+
+              <title>Login Page</title>
+                  <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+                  <script src="regKit_Library.js"></script>
+          <script>
+              window.addEventListener('online', register.updateOnlineStatus);
+              window.addEventListener('offline', register.updateOfflineStatus);
+        </script>
+
+      </head>
+
+<body onload="register.onRefresh()">
+
+  <style>
+
+               table, th {
+                  /*border: 1px solid black;*/
+                  text-align: center;
+                  width: 400px;
+                  height: 40px;
+              }
+
+              td {
+                  width: 1000px;
+                  height: 40px;
+              }
+
+
+              div {
+                  background-color: white;
+                  width: 800px;
+                  height: 850px;
+                  padding: 25px;
+                  border: 5px solid navy;
+                  margin: 25px;
+                  text-align: left;
+
+                }
+
+              progress{
+                  color: #0063a6;
+                  font-size: .6em;
+                  line-height: 1.5em;
+                  text-indent: .5em;
+                  width: 15em;
+                  height: 1.8em;
+                  border: 1px solid #0063a6;
+                  background: #fff;
+                }
+
+                 
+        </style>
+
+ <center><div>
+  
+       
+          <center><h1>Registration Page</h1></center><br>
+
+
+        <form name="myForm" id="myForm" onsubmit="return register.validateForm()">
+            
+            
+                      <table>
+                            <tr>
+                                <td>First name: </td><td><input type="text" name="user" id="user" placeholder="Username" autocomplete="off"></td></tr>
+                                <tr><td> Last name: </td><td><input type="text"  name="lastuser" id="lastuser" placeholder="Last name"></td></tr>
+                                <tr><td>Email:</td> <td><input name="email" id="email" placeholder="Email ID" type="email" onblur="register.ValidEmail()" required/></td></tr>
+                                <tr><td>Password: </td><td><input type="text" name="pass" id="pass" placeholder="Password" onkeyup="register.passwordChanged()" ></td>
+
+                                <td><span id="strength">Password Strength</span>
+                                <progress id="bar" value="2" max="100"></progress></td></tr>
+                                <tr><td>Re-Enter Password:</td> <td><input type="password" name="pass1" id="pass1" placeholder="Re-Enter Password"> 
+                      </table> 
+                <hr>
+                      <table>
+                                <tr><td>SSN </td> <td><input type="text" name="ssn" id="ssn" placeholder="876-987-xxxx" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$" required/></td> <td>
+                                <tr><td>Phone Number </td> <td><input type="text" name="phone" id="phone" placeholder="eg.408-876-9878" onblur="register.isPhoneNumberFormatValid()" required/></td> <td>
+
+                                </table>
+                                <br>
+                                <br>
+                                <hr>
+                                <h2>Credit Card Information:</h2>
+                      <table>
+                              <tr><td>Card Type</td><td><select name="type">
+                                      <option>Visa</option>
+                                      <option>American Express</option>
+                                      <option>Master Card</option>
+                                      <option>Discover</option>
+
+                                    </select></td>
+
+                                    <tr><td>Credit Number:</td><td><input type="text" name="creditnum" id="creditnum" pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$" placeholder="xxxx-xxxx-xxxx-xxxx" required/></td></tr>
+                      </table>
+                <hr>
+
+                <center><h3><i>Testing Panel</i></h3></center>
+                <center><tr><td><button type="submit">Form submit</button></td> </center>
+                <center><table>
+
+                  <!-- First Pair of Buttons for session storage -->
+                        <tr><td><button type="button" onclick="register.sessionstoragebybtn()">submit for session storage</button></td> 
+                        <td><button  name="check" onclick="register.readFromSessionStorage()" type="button">session retrive</button></td></tr>
+                        
+                  <!-- Second pair of buttons for local storage -->
+                        <tr><td><button type="button" onclick="register.saveToLocalStorage()">submit for local storage</button></td>  
+                        <td><button  name="check" onclick="register.readFromLocalStorage()" type="button">retrieve local</button></td></tr>
+
+                        <tr><td><button type="button" onclick="register.localclear()">Clear local storage</button></td>
+                        <td><button type="button" onclick="register.formclear()">Clear form</button> </td>
+                        
+                        </tr>
+                  </table>      
+
+      </form>
+  
+    </div> </center>
+<hr>
+   <center> <span>
+<span id="myDiv">tester</span>
+                        <button type="button" onclick="register.databaseping()">Ajax</button>
+    </span></center>
+
+
+
+  </body>
+
+</html>
