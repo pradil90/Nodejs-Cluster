@@ -9,11 +9,28 @@ var connection = mysql.createConnection({
 connection.connect();
 
 
-connection.query('select * from reg_object', function(err, rows, fields) {
+// connection.query('select * from reg_object', function(err, rows, fields) {
+//                  if (!err)
+//                  console.log('The solution is: ', rows);
+//                  else
+//                  console.log('Error while performing Query.', err);
+//                  });
+
+connection.end();
+
+
+module.exports = {
+  query: function () {
+    connection.query('select * from reg_object', function(err, rows, fields) {
                  if (!err)
                  console.log('The solution is: ', rows);
                  else
                  console.log('Error while performing Query.', err);
                  });
+  },
+  bar: function (text) {
+    // whatever
+    return text;
+  }
+};
 
-connection.end();
