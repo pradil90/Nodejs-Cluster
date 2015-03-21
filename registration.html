@@ -76,6 +76,8 @@
                                 <td><span id="strength">Password Strength</span>
                                 <progress id="bar" value="2" max="100"></progress></td></tr>
                                 <tr><td>Re-Enter Password:</td> <td><input type="password" name="pass1" id="pass1" placeholder="Re-Enter Password"> 
+                                <tr><td> Sex: </td><td><input type="text"  name="sex" id="sex" placeholder="M/F"></td></tr>
+                                <tr><td> Age: </td><td><input type="text"  name="age" id="age"></td></tr>
                       </table> 
                 <hr>
                       <table>
@@ -103,15 +105,11 @@
                 <center><h3><i>Testing Panel</i></h3></center>
                 <center><tr><td><button type="submit">Form submit</button></td> </center>
                 <center><table>
+                  <!-- First Pair of Buttons for MYSQL storage -->
+                        <tr><td><button type="button" onclick="register.saveToSQL()">submit for SQL Storage</button></td>  
+                        <td><button  name="check" onclick="register.readFromSQL()" type="button">Retrieve from SQL Database</button></td></tr>
 
-                  <!-- First Pair of Buttons for session storage -->
-                        <tr><td><button type="button" onclick="register.sessionstoragebybtn()">submit for session storage</button></td> 
-                        <td><button  name="check" onclick="register.readFromSessionStorage()" type="button">session retrive</button></td></tr>
-                        
-                  <!-- Second pair of buttons for local storage -->
-                        <tr><td><button type="button" onclick="register.saveToLocalStorage()">submit for local storage</button></td>  
-                        <td><button  name="check" onclick="register.readFromLocalStorage()" type="button">retrieve local</button></td></tr>
-
+      
                         <tr><td><button type="button" onclick="register.localclear()">Clear local storage</button></td>
                         <td><button type="button" onclick="register.formclear()">Clear form</button> </td>
                         
@@ -123,9 +121,7 @@
     </div> </center>
 <hr>
    <center> <span>
-<span id="myDiv">tester</span>
-                        <button type="button" onclick="register.databaseping()">Ajax</button>
-    </span></center>
+
 
 
 

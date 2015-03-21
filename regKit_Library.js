@@ -29,6 +29,131 @@ function defineregister() {
         }
 
 
+     register.databaseping1 = function (JSONs)
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("POST","http://127.0.0.1:3000/",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send("username=Alice&password=Ivan&js="+JSONs+"");
+            }
+
+//For testing database inserts as elements
+    register.databaseping2 = function (JSONs)
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("POST","http://127.0.0.1:3000/sqlstorage/insert",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send("fname=Pradeep&lname=Ivan&email=pradil90&pass=Ivan&repass=Prad&ssn=111-222-3333&phone=304-546-9876&credit=3333-4444-5555-6666");
+            }
+
+
+     register.databaseping3 = function ()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("GET","http://127.0.0.1:3000/sqlstorage/select",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send();
+            }
+
+        
+
+    //For testing database inserts
+    register.JSONdatabaseInsert = function (JSONs)
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    
+                    alert(xmlhttp.responseText);
+                    }
+                  }
+                xmlhttp.open("POST","http://127.0.0.1:3000/JSONsqlstorage/insert",true);
+                 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send("JSONobject="+JSONs+"");
+            }
+
+
+    register.JSONdatabaseFetch = function ()
+            {
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                  {// code for IE7+, Firefox, Chrome, Opera, Safari
+                  xmlhttp=new XMLHttpRequest();
+                  }
+                else
+                  {// code for IE6, IE5
+                  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                  }
+                xmlhttp.onreadystatechange=function()
+                  {
+                  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                    {
+                    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+                    }
+                  }
+                xmlhttp.open("GET","http://127.0.0.1:3000/JSONsqlstorage/select",true);
+                xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xmlhttp.send();
+
+                
+            }
+
+
      register.passwordChanged = function () {
 
             var strength = document.getElementById('strength');
@@ -139,6 +264,8 @@ function defineregister() {
                 document.getElementById("email").value="";
                 document.getElementById("pass").value="";
                 document.getElementById("pass1").value="";
+                document.getElementById("sex").value="";
+                document.getElementById("age").value="";
                 document.getElementById("ssn").value="";
                 document.getElementById("phone").value="";
                 document.getElementById("creditnum").value="";
@@ -175,6 +302,8 @@ function defineregister() {
                 var email=document.getElementById("email").value;
                 var pass=document.getElementById("pass").value;
                 var pass1=document.getElementById("pass1").value;
+                var sex=document.getElementById("sex").value;
+                var age=document.getElementById("age").value;
                 var ssn=document.getElementById("ssn").value;
                 var phone=document.getElementById("phone").value;
                 var creditnum=document.getElementById("creditnum").value;
@@ -183,6 +312,8 @@ function defineregister() {
                                         "lastuser":lastuser,
                                         "email":email,
                                         "pass":pass,
+                                        "sex":sex,
+                                        "age":age,
                                         "ssn":ssn,
                                         "creditnum":creditnum,
                                         "phone":phone}];
@@ -203,6 +334,8 @@ function defineregister() {
                 document.getElementById("email").value=form1[0].email;
                 document.getElementById("pass").value=form1[0].pass;
                 document.getElementById("pass1").value=form1[0].pass;
+                document.getElementById("sex").value=form1[0].sex;
+                document.getElementById("age").value=form1[0].age;
                 document.getElementById("ssn").value=form1[0].ssn;
                 document.getElementById("phone").value=form1[0].phone;
                 document.getElementById("creditnum").value=form1[0].creditnum;
@@ -215,7 +348,10 @@ function defineregister() {
                 if (Modernizr.localstorage) {
                     alert("Your Browser supports Local Storage");
                     localStorage.removeItem("formfiller");
-                    localStorage.setItem("formfiller",register.toJSONString());   
+                    var JSONstring = register.toJSONString()
+                    localStorage.setItem("formfiller", JSONstring); 
+
+
            
             }else{
 
@@ -261,6 +397,20 @@ function defineregister() {
         return false;}
 
     };
+
+
+    register.saveToSQL = function () {
+                 
+                    var JSONstring = register.toJSONString();
+                    register.JSONdatabaseInsert(JSONstring);
+                    register.formclear();
+                
+    };
+
+
+
+
+
 
     return register;
 
