@@ -13,6 +13,35 @@
               window.addEventListener('offline', register.updateOfflineStatus);
         </script>
 
+    <script>
+
+    counter=0;
+    // var target=document.getElementById("div1"); 
+  
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    
+  }   
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data).cloneNode(false));
+ if(counter>=2){
+  document.getElementById("myBtn").disabled=false;
+ }
+ counter++;
+
+}
+</script>
+
+<style>
+#div1 {width:150px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
       </head>
 
 <body onload="register.onRefresh()">
@@ -101,7 +130,18 @@
                                     <tr><td>Credit Number:</td><td><input type="text" name="creditnum" id="creditnum" pattern="^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$" placeholder="xxxx-xxxx-xxxx-xxxx" required/></td></tr>
                       </table>
                 <hr>
+<p><h3><B> Please drop all three images in the drop zone.<B></h3><p>
+<table>
 
+<tr><td><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+  <td></td>
+<td><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div><td>
+<td><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div><td></tr>
+  </table>
+<br>
+<img id="drag1" src="/Users/alicegeorge/Desktop/280_Ass_5/images/nodejs.png" draggable="true" ondragstart="drag(event)" width="150" height="69">
+<img id="drag2" src="/Users/alicegeorge/Desktop/280_Ass_5/images/ajax.png" draggable="true" ondragstart="drag(event)" width="100" height="69">
+<img id="drag3" src="/Users/alicegeorge/Desktop/280_Ass_5/images/json.png" draggable="true" ondragstart="drag(event)" width="150" height="69">
                 <center><h3><i>Testing Panel</i></h3></center>
                 <center><tr><td><button type="submit">Form submit</button></td> </center>
                 <center><table>
